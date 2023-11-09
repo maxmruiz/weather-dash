@@ -46,9 +46,28 @@ function updateCurrentWeather(data){
 
     // Assigning weather icon to their respective image
     var weatherIconCode = data.weather[0].icon;
-    var weatherIconURL = `./assets/images/${weatherIconCode}.png`;
+    var weatherIconURL = `/week6/weather-dash/assets/images/${weatherIconCode}.png`;
     document.getElementById('weatherIcon').src = weatherIconURL;
 
     document.getElementById('cityName').textContent = data.name;
     document.getElementById('date').textContent = new Date().toLocaleDateString();
+}
+
+function updateForecast(){
+    var forecastElements = document.querySelectorAll('.day');
+
+    for (let i = 0; i < forecastElements.length; i++){
+        var forecastData = data.list[i * 8];
+        var date = new Date(forecastData.dt * 1000);
+        var temperature = Math.round((forecastData.main.temp - 273.15) * 9/5 + 32);
+
+        forecastElements[i].querySelector('.date-fc').textContent = date.toLocaleDateString();
+        forecastElements[i].querySelector('.temp-fc').textContent = `Temperature: ${temperature}°F`;
+        forecastElements[i].querySelector('.wind-fc').textContent = `Wind Speed: ${forecastData.wind.speed}`;
+        forecastElements[i].querySelector('.humidity-fc').textContent = `Humidity: ${forecastData.main.humidity}`;
+
+        var iconCode = forecastData.weather[0].icon;
+        var iconURL = `/week6/weather-dash/assets/images/${iconCode}.png`;
+        forecastElements[i].querySelector('.weather-fc').src = iconURL;
+    }
 }
