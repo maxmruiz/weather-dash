@@ -43,4 +43,11 @@ function updateCurrentWeather(data){
     document.querySelector('.wind').textContent = `Wind speed: ${data.wind.speed} m/s`;
     // Displaying humidity
     document.querySelector('.humidity').textContent = `Humidity: ${data.main.humidity}%`; 
+
+    // Assigning weather icon to their respective image
+    var weatherIconCode = data.weather[0].icon;
+    var weatherIconURL = `./assets/images/${weatherIconCode}.png`;
+    document.getElementById('weatherIcon').src = weatherIconURL;
+
+    
 }
