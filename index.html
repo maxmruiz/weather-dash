@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <div class="left-container">
+        <h1>Search for a city: </h1>
+        <form>
+            <input type="text" id="searchInput" placeholder="Enter a city name...">
+            <button id="searchBtn">Search</button>
+        </form>
+        <div class="city-list">
+            <ul id="cityList"></ul>
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        <div class="city-info">
+            <div class="city-header">
+                <h1 id="cityName">Miami</h1><span id="date">11/09/2023</span><img src="#" id="weatherIcon"/>
+            </div>
+            <div class="city-details">
+                <p class="temp">Temperature: </p>
+                <p class="wind">Wind Speed: </p>
+                <p class="humidity">Humidity: </p>
+            </div>
+        </div>
+
+        <!-- Day 1 -->
+        <div class="day-forecast">
+            <h1>5-Day Forecast</h1>
+            <div class="day">
+                <h1 class="date-fc"></h1>
+                <img src="#" class="weather-fc"/>
+                <p class="temp-fc">Temperature: </p>
+                <p class="wind-fc">Wind Speed: </p>
+                <p class="humidity-fc">Humidity: </p>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day">
+                <h1 class="date-fc"></h1>
+                <img src="#" class="weather-fc"/>
+                <p class="temp-fc">Temperature: </p>
+                <p class="wind-fc">Wind Speed: </p>
+                <p class="humidity-fc">Humidity: </p>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day">
+                <h1 class="date-fc"></h1>
+                <img src="#" class="weather-fc"/>
+                <p class="temp-fc">Temperature: </p>
+                <p class="wind-fc">Wind Speed: </p>
+                <p class="humidity-fc">Humidity: </p>
+            </div>
+
+            <!-- Day 4-->
+            <div class="day">
+                <h1 class="date-fc"></h1>
+                <img src="#" class="weather-fc"/>
+                <p class="temp-fc">Temperature: </p>
+                <p class="wind-fc">Wind Speed: </p>
+                <p class="humidity-fc">Humidity: </p>
+            </div>
+
+            <!-- Day 5-->
+            <div class="day">
+                <h1 class="date-fc"></h1>
+                <img src="#" class="weather-fc"/>
+                <p class="temp-fc">Temperature: </p>
+                <p class="wind-fc">Wind Speed: </p>
+                <p class="humidity-fc">Humidity: </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
