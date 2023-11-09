@@ -49,5 +49,6 @@ function updateCurrentWeather(data){
     var weatherIconURL = `./assets/images/${weatherIconCode}.png`;
     document.getElementById('weatherIcon').src = weatherIconURL;
 
-    
+    document.getElementById('cityName').textContent = data.name;
+    document.getElementById('date').textContent = new Date().toLocaleDateString();
 }
