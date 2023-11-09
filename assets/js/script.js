@@ -1,3 +1,10 @@
+var weatherIcons = {
+    'Clear': 'sunny.png',
+    'Rain': 'rainy.png',
+    'Clouds': 'cloudy.png',
+    'Snow': 'snowy.png'
+};
+
 document.getElementById('searchBtn').addEventListener('click', function(event){
     event.preventDefault();
     var city = document.getElementById('searchInput').value;
@@ -24,4 +31,16 @@ function getWeather(city) {
         updateForecast(data);
     })
     .catch(error => console.error('Error', error));
+}
+
+function updateCurrentWeather(data){
+    var temperatureDefault = data.main.temp; // The default temperature measurement is in Kelvin, will have to convert
+    var temperatureFahrenheit = Math.round((temperatureDefault - 273.15) * 9/5 + 32); // Converting Kelvin to Fahrenheit
+
+    // Displaying the temperature in Fahrenheit
+    document.querySelector('.temp').textContent = `Temperature: ${temperatureFahrenheit}°F`;
+    //Displaying wind speed
+    document.querySelector('.wind').textContent = `Wind speed: ${data.wind.speed} m/s`;
+    // Displaying humidity
+    document.querySelector('.humidity').textContent = `Humidity: ${data.main.humidity}%`; 
 }
