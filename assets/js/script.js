@@ -18,24 +18,21 @@ function getWeather(city) {
 
     // Fetch current weather
     fetch(API_URL)
-    .then(response => response.json())
-    .then(data => {
-        // Updating the weather UI
-        updateCurrentWeather(data);
-        // Fetching the 5 day forecast
-        return fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + key);
+    .then(response => {
+        if (!response.ok){
+            throw new Error('Network response failed');
+        }
+        return response.json();
     })
-    .then(response => response.json())
-    .then(data => {
-        // Updating the 5 day forecast UI 
+    .then(data =>{
         updateForecast(data);
     })
-    .catch(error => console.error('Error', error));
+    .catch(error => console.error('Error:', error));
 }
 
-function updateCurrentWeather(data){
-    var temperatureDefault = data.main.temp; // The default temperature measurement is in Kelvin, will have to convert
-    var temperatureFahrenheit = Math.round((temperatureDefault - 273.15) * 9/5 + 32); // Converting Kelvin to Fahrenheit
+function updateCurrentWeather(currentWeatherData){
+
+    var temperatureFahrenheit = Math.round((currentWeatherData.main.temp - 273.15) * 9/5 + 32); // Converting Kelvin to Fahrenheit
 
     // Displaying the temperature in Fahrenheit
     document.querySelector('.temp').textContent = `Temperature: ${temperatureFahrenheit}°F`;
@@ -46,14 +43,14 @@ function updateCurrentWeather(data){
 
     // Assigning weather icon to their respective image
     var weatherIconCode = data.weather[0].icon;
-    var weatherIconURL = `/week6/weather-dash/assets/images/${weatherIconCode}.png`;
+    var weatherIconURL = `http://openweathermap.org/img/wn/${weatherIconCode}.png`;
     document.getElementById('weatherIcon').src = weatherIconURL;
 
     document.getElementById('cityName').textContent = data.name;
     document.getElementById('date').textContent = new Date().toLocaleDateString();
 }
 
-function updateForecast(){
+function updateForecast(data){
     var forecastElements = document.querySelectorAll('.day');
 
     for (let i = 0; i < forecastElements.length; i++){
@@ -63,11 +60,11 @@ function updateForecast(){
 
         forecastElements[i].querySelector('.date-fc').textContent = date.toLocaleDateString();
         forecastElements[i].querySelector('.temp-fc').textContent = `Temperature: ${temperature}°F`;
-        forecastElements[i].querySelector('.wind-fc').textContent = `Wind Speed: ${forecastData.wind.speed}`;
+        forecastElements[i].querySelector('.wind-fc').textContent = `Wind Speed: ${forecastData.wind.speed} m/s`;
         forecastElements[i].querySelector('.humidity-fc').textContent = `Humidity: ${forecastData.main.humidity}`;
 
         var iconCode = forecastData.weather[0].icon;
-        var iconURL = `/week6/weather-dash/assets/images/${iconCode}.png`;
+        var iconURL = `http://openweathermap.org/img/wn/${iconCode}.png`;
         forecastElements[i].querySelector('.weather-fc').src = iconURL;
     }
 }
