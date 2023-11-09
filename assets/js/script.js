@@ -1,9 +1,3 @@
-var weatherIcons = {
-    'Clear': 'sunny.png',
-    'Rain': 'rainy.png',
-    'Clouds': 'cloudy.png',
-    'Snow': 'snowy.png'
-};
 
 document.getElementById('searchBtn').addEventListener('click', function(event){
     event.preventDefault();
@@ -30,27 +24,10 @@ function getWeather(city) {
     .catch(error => console.error('Error:', error));
 }
 
-function updateCurrentWeather(currentWeatherData){
-
-    var temperatureFahrenheit = Math.round((currentWeatherData.main.temp - 273.15) * 9/5 + 32); // Converting Kelvin to Fahrenheit
-
-    // Displaying the temperature in Fahrenheit
-    document.querySelector('.temp').textContent = `Temperature: ${temperatureFahrenheit}°F`;
-    //Displaying wind speed
-    document.querySelector('.wind').textContent = `Wind speed: ${data.wind.speed} m/s`;
-    // Displaying humidity
-    document.querySelector('.humidity').textContent = `Humidity: ${data.main.humidity}%`; 
-
-    // Assigning weather icon to their respective image
-    var weatherIconCode = data.weather[0].icon;
-    var weatherIconURL = `http://openweathermap.org/img/wn/${weatherIconCode}.png`;
-    document.getElementById('weatherIcon').src = weatherIconURL;
-
-    document.getElementById('cityName').textContent = data.name;
-    document.getElementById('date').textContent = new Date().toLocaleDateString();
-}
 
 function updateForecast(data){
+    document.getElementById('cityName').textContent = data.city.name;
+
     var forecastElements = document.querySelectorAll('.day');
 
     for (let i = 0; i < forecastElements.length; i++){
