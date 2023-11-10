@@ -1,3 +1,6 @@
+var currentDayElem = document.querySelector('.current-day');
+var dayForecastElem = document.querySelector('.day-forecast');
+
 document.addEventListener('DOMContentLoaded', function(){
 document.getElementById('searchBtn').addEventListener('click', function(event){
     event.preventDefault();
@@ -53,4 +56,7 @@ function updateForecast(data){
         var iconURL = `http://openweathermap.org/img/wn/${iconCode}.png`;
         forecastElements[i].querySelector('.weather-fc').src = iconURL;
     }
+
+    currentDayElem.style.display = 'block';
+    dayForecastElem.style.display = 'flex';
 }
