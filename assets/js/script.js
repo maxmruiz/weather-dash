@@ -31,7 +31,7 @@ function updateForecast(data){
     var forecastElements = document.querySelectorAll('.day');
 
     for (let i = 0; i < forecastElements.length; i++){
-        var forecastData = data.list[i * 8];
+        var forecastData = data.list[i * 7];
         var date = new Date(forecastData.dt * 1000);
         var temperature = Math.round((forecastData.main.temp - 273.15) * 9/5 + 32);
 

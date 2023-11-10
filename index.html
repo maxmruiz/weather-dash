@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Weather Dashboard</title>
 </head>
@@ -23,8 +24,18 @@
     </div>
 
     <div class="main-container">
-        <div class="city-header">
-            <h1 id="cityName"></h1><span id="date"></span>
+        <div class="current-day">
+            <div class="city-header">
+                <h1 id="cityName"></h1><span id="date"></span>
+            </div>
+            <div class="day">
+                <h1 class="date-fc"></h1>
+                <img src="" class="weather-fc"/>
+                <p class="temp-fc">Temperature: </p>
+                <p class="wind-fc">Wind Speed: </p>
+                <p class="humidity-fc">Humidity: </p>
+            </div>
+            
         </div>
 
         <!-- Day 1 -->
@@ -74,7 +85,6 @@
                 <p class="humidity-fc">Humidity: </p>
             </div>
         </div>
-
     </div>
 
 
