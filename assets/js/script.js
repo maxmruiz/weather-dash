@@ -47,7 +47,7 @@ function updateForecast(data){
         forecastElements[i].querySelector('.date-fc').textContent = date.toLocaleDateString();
         forecastElements[i].querySelector('.temp-fc').textContent = `Temperature: ${temperature}°F`;
         forecastElements[i].querySelector('.wind-fc').textContent = `Wind Speed: ${forecastData.wind.speed} m/s`;
-        forecastElements[i].querySelector('.humidity-fc').textContent = `Humidity: ${forecastData.main.humidity}`;
+        forecastElements[i].querySelector('.humidity-fc').textContent = `Humidity: ${forecastData.main.humidity}%`;
 
         var iconCode = forecastData.weather[0].icon;
         var iconURL = `http://openweathermap.org/img/wn/${iconCode}.png`;
