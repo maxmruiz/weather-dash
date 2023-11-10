@@ -1,8 +1,17 @@
-
+document.addEventListener('DOMContentLoaded', function(){
 document.getElementById('searchBtn').addEventListener('click', function(event){
     event.preventDefault();
     var city = document.getElementById('searchInput').value;
     getWeather(city);
+});
+    var cityListItem = document.querySelectorAll('.cityList');
+    cityListItem.forEach(function (item) {
+        item.addEventListener('click', function(){
+            var city = this.textContent;
+            getWeather(city);
+        });
+    });
+
 });
 
 function getWeather(city) {
