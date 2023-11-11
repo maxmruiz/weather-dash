@@ -5,6 +5,7 @@ In todays age, checking the weather is a common occurance and even more so for u
 
 ## Usage
 When you first launch the website, you are presented with two main containers:
+
     1. A left side container with an input box, search button, and list of cities.
         - In the input box you are able to enter a city name, any invalid city name with prompt an error message to please enter a valid city.
         - Once you have decided on the city, you may press the search button or press enter on your keyboard to load the weather forecast.
