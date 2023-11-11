@@ -1,7 +1,32 @@
 var currentDayElem = document.querySelector('.current-day');
 var dayForecastElem = document.querySelector('.day-forecast');
 
-document.addEventListener('DOMContentLoaded', function(){
+$(document).ready(function(){
+    $('#searchBtn').on('click', function(event){
+        event.preventDefault();
+        getWeather($('#searchInput').val());
+    });
+});
+
+function getWeather(city){
+    var key = 'b728fddd61a439b11308f921ea4b2e2f';
+    var API_URL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + key;
+
+    $.ajax({
+        URL: API_URL,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            updateForecast(data);
+        },
+        error: function() {
+            $('#error-msg').text('Error: Invalid city name. Please enter a valid city name.').show();
+        }
+    });
+}
+
+/**
+ * document.addEventListener('DOMContentLoaded', function(){
 document.getElementById('searchBtn').addEventListener('click', function(event){
     event.preventDefault();
     var city = document.getElementById('searchInput').value;
@@ -15,9 +40,11 @@ document.getElementById('searchBtn').addEventListener('click', function(event){
         });
     });
 
-});
+}); 
+ */
 
-function getWeather(city) {
+/**
+ * function getWeather(city) {
     var key = 'b728fddd61a439b11308f921ea4b2e2f';
     var API_URL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + key;
 
@@ -37,7 +64,8 @@ function getWeather(city) {
         console.error('Error:', error);
         document.getElementById('error-msg').textContent = 'Error: Invalid city name. Please enter a valid city name.';
         document.getElementById('error-msg').style.display = 'block';
-    });
+    }); 
+ */
 
 function updateForecast(data){
     document.getElementById('cityName').textContent = data.city.name;
