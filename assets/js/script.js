@@ -33,9 +33,11 @@ function getWeather(city) {
     .then(data =>{
         updateForecast(data);
     })
-    .catch(error => console.error('Error:', error));
-}
-
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('error-msg').textContent = 'Error: Invalid city name. Please enter a valid city name.';
+        document.getElementById('error-msg').style.display = 'block';
+    });
 
 function updateForecast(data){
     document.getElementById('cityName').textContent = data.city.name;
@@ -59,4 +61,5 @@ function updateForecast(data){
 
     currentDayElem.style.display = 'block';
     dayForecastElem.style.display = 'flex';
+    }
 }
