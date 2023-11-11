@@ -1,6 +1,3 @@
-var currentDayElem = document.querySelector('.current-day');
-var dayForecastElem = document.querySelector('.day-forecast');
-
 $(document).ready(function(){
     $('#searchBtn').on('click', function(event){
         event.preventDefault();
@@ -25,69 +22,24 @@ function getWeather(city){
     });
 }
 
-/**
- * document.addEventListener('DOMContentLoaded', function(){
-document.getElementById('searchBtn').addEventListener('click', function(event){
-    event.preventDefault();
-    var city = document.getElementById('searchInput').value;
-    getWeather(city);
-});
-    var cityListItem = document.querySelectorAll('.cityList');
-    cityListItem.forEach(function (item) {
-        item.addEventListener('click', function(){
-            var city = this.textContent;
-            getWeather(city);
-        });
-    });
-
-}); 
- */
-
-/**
- * function getWeather(city) {
-    var key = 'b728fddd61a439b11308f921ea4b2e2f';
-    var API_URL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + key;
-
-
-    // Fetch current weather
-    fetch(API_URL)
-    .then(response => {
-        if (!response.ok){
-            throw new Error('Network response failed');
-        }
-        return response.json();
-    })
-    .then(data =>{
-        updateForecast(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('error-msg').textContent = 'Error: Invalid city name. Please enter a valid city name.';
-        document.getElementById('error-msg').style.display = 'block';
-    }); 
- */
-
 function updateForecast(data){
-    document.getElementById('cityName').textContent = data.city.name;
+    $('#cityName').text(data.city.name);
 
-    var forecastElements = document.querySelectorAll('.day');
-
-    for (let i = 0; i < forecastElements.length; i++){
-        var forecastData = data.list[i * 7];
+    $('.day').each(function(index){
+        var forecastData = data.list[index * 7];
         var date = new Date(forecastData.dt * 1000);
         var temperature = Math.round((forecastData.main.temp - 273.15) * 9/5 + 32);
 
-        forecastElements[i].querySelector('.date-fc').textContent = date.toLocaleDateString();
-        forecastElements[i].querySelector('.temp-fc').textContent = `Temperature: ${temperature}°F`;
-        forecastElements[i].querySelector('.wind-fc').textContent = `Wind Speed: ${forecastData.wind.speed} m/s`;
-        forecastElements[i].querySelector('.humidity-fc').textContent = `Humidity: ${forecastData.main.humidity}%`;
+        $(this).find('.date-fc').text(date.toLocaleDateString());
+        $(this).find('.temp-fc').text(`Temperature: ${temperature}°F`);
+        $(this).find('.wind-fc').text(`Wind Speed: ${forecastData.wind.speed} m/s`);
+        $(this).find('.humidity-fc').text(`Humidity: ${forecastData.main.humidity}%`);
 
         var iconCode = forecastData.weather[0].icon;
         var iconURL = `http://openweathermap.org/img/wn/${iconCode}.png`;
-        forecastElements[i].querySelector('.weather-fc').src = iconURL;
-    }
+        $(this).find('.weather-fc').attr('src', iconURL);
+    });
 
-    currentDayElem.style.display = 'block';
-    dayForecastElem.style.display = 'flex';
-    }
+    $('.current-day').show();
+    $('.day-forecast').css('display', 'flex');
 }
