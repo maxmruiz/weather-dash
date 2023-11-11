@@ -23,4 +23,4 @@ When you first launch the website, you are presented with two main containers:
 <p font-weight="bold">HTML, CSS, JavaScript, jQuery</p>
 
 ## Link
-Want to check the weather, use this [link]() to check it out.
+Want to check the weather, use this [link](https://maxmruiz.github.io/weather-dash/) to check it out.
